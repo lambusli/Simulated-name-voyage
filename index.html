@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fake name voyage</title>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Slabo+27px" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>  
+    <header>
+<!--        <div id="headimage" class="container">-->
+<!--            <img src="img/header_light.gif">-->
+<!--        </div>-->
+        <h1 id="title">Fake name voyage</h1>
+    </header>
+    
+    <main>        
+        <div id="control" class="section">
+            <form id="nameform" name="inputName" onSubmit="return handleClick();">
+                <input class="text" type="text" id="myVal" placeholder="Please enter name&hellip;">
+                <input class="text" type="text" id="myGen" placeholder="Please enter gender">
+                <input class="submit" name="Submit"  type="submit" value="Add to list" >
+            </form>
+            <p>In the gender box, enter "M", or "F"</p>
+            <div>
+            <div class="selection">
+                <ul></ul>
+                </div></div>
+
+            <form id="genform" name="chooseGen">
+                <input class="radio" type="radio" name="b", value="E"> Applied to either gender <br>
+                <input class="radio" type="radio" name="b" value="M"> Male name <br>
+                <input class="radio" type="radio" name="b" value="F"> Female name <br>
+        <!--        <input class="radio " type="radio" name="b" value="B"> Applied to both gender <br>-->
+            </form>
+        </div>
+        
+        <div id="diagrams" class="section">
+            <p style="margin-left: 3em;">I am visualization</p>
+            <svg id="chart"></svg>
+            <svg id="legend"></svg>
+        </div>
+    </main>
+
+    <script src="name.js"></script>
+</body>
+</html>

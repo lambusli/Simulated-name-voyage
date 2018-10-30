@@ -1,0 +1,131 @@
+/*
+font-family: 'Slabo 27px', serif;
+font-family: 'Merriweather', serif;
+*/
+
+/*-------------------
+Global
+--------------------*/
+html {
+    background: #547aa5; 
+    font-family: sans-serif; 
+}
+
+body {
+    background: #f5f3f1; 
+    width: 80%; 
+/*    margin-right: auto; */
+/*    margin-left: auto; */
+/*    height: 100vh; */
+    margin: 0 auto; 
+/*    text-align: center; */
+/*    padding: 10px 20px; */
+}
+
+header{
+    display: grid; 
+    color: white;
+    height: 130px; 
+    padding: 20px 10px 20px 10px ;  
+    position: relative; 
+}
+
+h1 { 
+    font-family: 'Merriweather', serif, serif; 
+}
+
+/*-------------------
+Header
+--------------------*/
+
+/*
+Good trick to put in background image
+See https://css-tricks.com/apply-a-filter-to-a-background-image/
+*/
+header::before {
+    content: "";
+    filter: brightness(50%);
+    background-image: url(img/header_light.gif);
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#title {
+    position: relative; 
+}
+
+header h1 {
+    margin-left: 50px; 
+    margin-top: 35px; 
+    font-size: 40px; 
+}
+
+/*-------------------
+Main
+--------------------*/
+
+main {
+    /* not a sustainable way to control position */
+/*    padding-left: 40px;*/
+    padding-bottom: 50px; 
+    height: 100vh; 
+    vertical-align: bottom; 
+}
+
+/*-------------------
+Control area
+--------------------*/
+
+.section {
+    display: inline-block; 
+    margin-top: 20px; 
+    margin-left: 50px; 
+}
+
+#control {
+    width: 20%; 
+    float: left; 
+}
+
+.text {
+    margin-top: 5px; 
+    border-radius: 5px; 
+    padding: 5px; 
+}
+
+.submit {
+    margin-top: 5px; 
+    color: #260491; 
+    font-size: 20px; 
+    font-weight: 700; 
+    border-radius: 5px; 
+    background-color: #f5dd90; 
+    padding: 10px 5px; 
+}
+
+.selection {
+    background-color: #f5d8d7; 
+    border-radius: 5px; 
+    width: inherit; 
+    padding: 10px; 
+/*    margin: 10px 5px; */
+}
+
+#genform {
+    margin-top: 10px; 
+}
+
+/*-------------------
+diagram area
+--------------------*/
+
+#diagrams {
+    /* might be dangerous */
+    min-width: 300px; 
+    width: auto; 
+    background: darkgrey; 
+    float: left; 
+}
