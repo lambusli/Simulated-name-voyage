@@ -1,0 +1,16 @@
+<select id="LOL">
+    <option value="1">1</option>
+    <option value="2">2</option>
+</select>
+
+<button id="butt">Click me!</button>
+
+<script>
+    var elem = document.getElementById("LOL");
+    // alert(elem.value);
+    var butt = document.getElementById("butt");
+
+    butt.addEventListener("click", function(){
+        alert(elem.value);
+    });
+</script>

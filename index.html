@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fake name voyage</title>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Slabo+27px" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+    <header>
+<!--        <div id="headimage" class="container">-->
+<!--            <img src="img/header_light.gif">-->
+<!--        </div>-->
+        <h1 id="title">Fake name voyage</h1>
+    </header>
+
+    <main>
+        <div id="control" class="section">
+            <input class="text" type="text" id="myVal" placeholder="Please enter name&hellip;">
+            <select id="selectGender">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+            <input class="addButton" type="button" value="Add to List">
+
+            <div>
+                <div class="selection">
+                    <ul></ul>
+                </div>
+            </div>
+
+            <form id="genform" name="chooseGen">
+                <input class="radio" type="radio" name="b" value="M"> Male name <br>
+                <input class="radio" type="radio" name="b" value="F"> Female name <br>
+                <input class="radio " type="radio" name="b" value="Both"> Applied to both gender <br>
+            </form>
+        </div>
+
+        <div id="diagrams" class="section">
+            <svg id="chart"></svg>
+            <svg id="legend"></svg>
+        </div>
+    </main>
+
+    <script src="new.js"></script>
+</body>
+</html>
