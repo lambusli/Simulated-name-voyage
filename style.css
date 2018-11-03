@@ -1,0 +1,191 @@
+/*
+font-family: 'Slabo 27px', serif;
+font-family: 'Merriweather', serif;
+*/
+
+/*-------------------
+Global
+--------------------*/
+html {
+    background: #547aa5;
+    font-family: sans-serif;
+}
+
+body {
+    background: #f5f3f1;
+    width: 90%;
+/*    margin-right: auto; */
+/*    margin-left: auto; */
+/*    height: 100vh; */
+    margin: 0 auto;
+/*    text-align: center; */
+/*    padding: 10px 20px; */
+}
+
+header{
+    display: grid;
+    color: white;
+    height: 130px;
+    padding: 20px 10px 20px 10px ;
+    position: relative;
+}
+
+h1 {
+    font-family: 'Merriweather', serif, serif;
+}
+
+ul {
+  margin: 0 0 0 0;
+  list-style: none; /* Remove default bullets */
+  -webkit-padding-start: 15px;
+}
+
+ul li::before {
+  content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  color: transparent; /* Change the color */
+  font-weight: bold; /* If you want it to be bold */
+  display: inline-block; /* Needed to add space between the bullet and the text */
+  /* width: 1em; /* Also needed for space (tweak if needed) */ */
+  /* margin-left: -2em; /* Also needed for space (tweak if needed) */ */
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 2px;
+
+}
+
+.hidden {
+    display: none;
+}
+
+
+/*-------------------
+Header
+--------------------*/
+
+/*
+Good trick to put in background image
+See https://css-tricks.com/apply-a-filter-to-a-background-image/
+*/
+header::before {
+    content: "";
+    filter: brightness(50%);
+    background-image: url(img/header_light.gif);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#title {
+    position: relative;
+}
+
+header h1 {
+    margin-left: 50px;
+    margin-top: 35px;
+    font-size: 40px;
+}
+
+/*-------------------
+Main
+--------------------*/
+
+main {
+    /* not a sustainable way to control position */
+/*    padding-left: 40px;*/
+    padding-bottom: 50px;
+    min-height: 100vh;
+    vertical-align: bottom;
+}
+
+/*-------------------
+Control area
+--------------------*/
+
+.section {
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+#control {
+    width: 20%;
+    float: left;
+}
+
+.text {
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.addButton {
+    margin-top: 5px;
+    color: #260491;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    background-color: #f5dd90;
+    padding: 10px 10px;
+}
+
+.selection {
+    background-color: #f5e8e8;
+    border-radius: 5px;
+    min-width: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    margin: 10px 5px;
+    /* padding: 10px 10px 5px 5px; */
+}
+
+.del {
+    color: black;
+    float: right;
+    background-color: transparent;
+    border-color: transparent;
+    transition: 0.5s;
+}
+
+.del:hover {
+    color: red;
+    font-size: 17px;
+}
+
+#genform {
+    margin-top: 10px;
+}
+
+#tooltip{
+    position:absolute;
+    width:150px;
+    height:auto;
+    padding:10px;
+    background-color: white;
+    border-radius:10px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+    pointer-events: none;
+}
+
+#tooltip p{
+    margin:0;
+    font-family: sans-serif;
+    font-size:12px;
+}
+
+
+/*-------------------
+diagram area
+--------------------*/
+
+#diagrams {
+    /* might be dangerous */
+    margin-left: 55px;
+    min-width: 300px;
+    width: 65%;
+    height: 550px; 
+    background: darkgrey;
+    float: left;
+}

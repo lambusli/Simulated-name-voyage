@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fake name voyage</title>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Slabo+27px" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+    <header>
+<!--        <div id="headimage" class="container">-->
+<!--            <img src="img/header_light.gif">-->
+<!--        </div>-->
+        <h1 id="title">Fake name voyage</h1>
+    </header>
+
+    <main>
+        <div id="control" class="section">
+            <input class="text" type="text" id="myVal" placeholder="Please enter name&hellip;">
+            <select id="selectGender">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="B">Both</option>
+            </select>
+            <input class="addButton" type="button" value="Add to List">
+
+            <div class="selection">
+                <ul></ul>
+            </div>
+
+            <form id="genform" name="chooseGen">
+                <input class="radio" type="radio" name="b" value="M"> Male name <br>
+                <input class="radio" type="radio" name="b" value="F"> Female name <br>
+                <input class="radio " type="radio" name="b" value="Both"> Applied to both gender <br>
+            </form>
+
+            <div id="tooltip" class="hidden">
+                <p>
+                    Name: <span  id="name"></span><br />
+                    Gender: <span id="gender"></span><br />
+                </p>
+            </div>
+        </div>
+
+        <div id="diagrams" class="section">
+            <svg id="chart"></svg>
+        </div>
+    </main>
+
+    <script src="new.js"></script>
+</body>
+</html>

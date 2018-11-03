@@ -1,0 +1,14 @@
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<select id="LOL">
+    <option value="1">1</option>
+    <option value="2">2</option>
+</select>
+
+<button id="butt">Click me!</button>
+
+<script>
+    var warm = d3.interpolateRdPu(0.3);
+    console.log(warm);
+    d3.select('#butt').style("background-color", warm); 
+</script>
