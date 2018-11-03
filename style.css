@@ -34,6 +34,13 @@ h1 {
     font-family: 'Merriweather', serif, serif;
 }
 
+h3 {
+  z-index: 1;
+  text-align: right;
+  margin-top: -1px;
+  /* margin-bottom: 15px;  */
+}
+
 ul {
   margin: 0 0 0 0;
   list-style: none; /* Remove default bullets */
@@ -185,7 +192,7 @@ diagram area
     margin-left: 55px;
     min-width: 300px;
     width: 65%;
-    height: 550px; 
+    height: 550px;
     background: darkgrey;
     float: left;
 }
