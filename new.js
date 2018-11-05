@@ -72,6 +72,12 @@ d3.csv(url).then((data)=>{
       .key((d) => d["Gender"])
       .map(data);
 
+    var nastyList = d3.nest()
+      .key((d) => d["Name"])
+      .key((d) => d["Gender"])
+      .key((d) => d["Year"])
+      .map(data);
+
     const margins = {top:20, bottom:40, left:80, right:10}
 
     const width = 470;
@@ -97,6 +103,9 @@ d3.csv(url).then((data)=>{
 
     const y_axis = chart.append("g")  // g tag for y axis
       .attr("id", "y_axis");
+
+    const refLine = chart.append("g")  // reference line
+      .attr("class", "ref")
 
     /*
     * res -> [[{}, {}, {},...], [{}, {}, {},...], [{}, {}, {},...], [{}, {}, {},...]]
@@ -170,6 +179,7 @@ d3.csv(url).then((data)=>{
         lines.append("path")
           .datum((d) => d)
           .style("mix-blend-mode", "multiply")
+          .attr("class", "linepath")
           .attr("d", d3.line().x((d)=>x_scale(d.Year)).y((d)=>y_scale(d.Count)))
           .attr("fill", "none")
           .attr("stroke", (d, i) => giveColor(d[i]["Name"], d[i]["Gender"]))
@@ -194,6 +204,7 @@ d3.csv(url).then((data)=>{
           .datum((d) => d)
           .attr("d", d3.line().x((d)=>x_scale(d.Year)).y((d)=>y_scale(d.Count)))
           .style("mix-blend-mode", "multiply")
+          .attr("class", "linepath")
           .attr("fill", "none")
           .attr("stroke", (d, i) => giveColor(d[i]["Name"], d[i]["Gender"]))
           .attr("stroke-width", strokewidth)
@@ -218,34 +229,86 @@ d3.csv(url).then((data)=>{
           .duration(500).delay(100)
           .remove();
 
-        // event listener for hovering up the line
-        // highlights the line without animation
-        // shows a tooltip with partial information
 
-        /*????????????????????????????????????
-        ? Question: How do we get the year and the count as mouse moves, to add into tooltip?
-        ???????????????????????????????????*/
-        d3.selectAll(".line").on("mouseover", function(d, i){
+        /* -----------
+        * actions when we hover on a line
+        -----------*/
+        function onLine(d, i, domelem) {
+            let coord = [d3.event.pageX, d3.event.pageY]; // page coordinate
 
-            const coord = [d3.event.pageX, d3.event.pageY];
+            // get the year corresponding to the mouse position on the chart. This needs to be an integer
+            // x_scale.invert: transform a coordinate into Year
+            // d3.mouse(DOM element) returns coordinate [x, y] with reference to this DOM element
+            let selectedYear = Math.floor(x_scale.invert(d3.mouse(domelem)[0]));
+            // get the count of corresponding year
+            let selectedCount = nastyList.get(d[0]["Name"]).get(d[0]["Gender"]).get(selectedYear)[0]["Count"];
 
-            d3.select(this).selectAll("path").attr("stroke-width", 6) // highlight the line
+            let chartX = x_scale(selectedYear); // the real X coordinate on the chart
+            let chartY = y_scale(selectedCount); // the real y coordinate on the chart
+
+            d3.select(domelem).selectAll(".linepath").attr("stroke-width", 6) // highlight the line
 
             //  appending info to tooltip
             d3.select("#name").text(d[0]["Name"]);
             d3.select("#gender").text(d[0]["Gender"]);
+            d3.select("#year").text(selectedYear);
+            d3.select("#count").text(selectedCount);
+
+            // appending reference line
+            var lineFunction = d3.line()
+              .x(function(d) { return d.x; })
+              .y(function(d) { return d.y; })
+              .curve(d3.curveLinear);
+
+            //The data for our line
+            var lineDataV = [
+              {"x": chartX, "y": chartY},
+              {"x": chartX, "y": y_scale(0)}
+            ];
+
+            var lineDataH = [
+              {"x": chartX, "y": chartY},
+              {"x": 0, "y": chartY}
+            ]
+
+            refLine.html(""); // clear the previous reference line
+
+            // vertical reference line
+            refLine.append("path")
+              .attr("d", lineFunction(lineDataV))
+              .attr("stroke", "black")
+              .attr("stroke-width", 1)
+              .attr("fill", "none")
+              .style("stroke-dasharray", ("3, 3"));
+
+            // horizontal reference line
+            refLine.append("path")
+              .attr("d", lineFunction(lineDataH))
+              .attr("stroke", "black")
+              .attr("stroke-width", 1)
+              .attr("fill", "none")
+              .style("stroke-dasharray", ("3, 3"));
+
 
             // show and style the tooltip
             d3.select("#tooltip") // select tooltip
                 .classed("hidden", false)
                 .style("left", (coord[0]) + 25 + "px")
                 .style("top", (coord[1]) + 25 + "px");
-        });
+        }
+
+        // event listener for hovering up the line
+        // highlights the line without animation
+        // shows a tooltip with partial information
+        d3.selectAll(".line").on("mouseover", function(d, i){onLine(d, i, this)});
+
+        d3.selectAll(".line").on("mousemove", function(d, i){onLine(d, i, this)});
 
         // event listener for unhovering up the line
-        d3.selectAll("path").on("mouseout", function(d, i){
+        d3.selectAll(".linepath").on("mouseout", function(d, i){
             d3.select('#tooltip').classed("hidden", true); // hide the tooltip
             d3.select(this).attr("stroke-width", 1.5);  // unhighlight the line
+            refLine.html(""); // remove reference line
         });
     }
 
